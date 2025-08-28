@@ -1,0 +1,35 @@
+.container{
+    .hero{
+        .hero-body {
+            .display-font {
+                font-family: "Noto Serif Display", serif !important;
+                font-optical-sizing: auto;
+                font-variation-settings: "wdth" 100;
+            }
+            .greet{
+                @extend .display-font;
+                font-size: clamp(1.5rem, 3vw, 2.5rem);
+                font-weight: 400;
+                font-style: italic;
+            }
+
+            a {
+                @extend .display-font;
+                font-size: clamp(2.5rem, 5vw, 5rem);
+                // line-height: clamp(2.5rem, 5vw, 7rem);
+                font-weight: 800;
+                word-spacing: clamp(-0.3rem, -0.2vw, -3.2rem);
+                letter-spacing: (-0.5rem, -0.3vw, -3.5rem);
+            }
+            
+            .description {
+                font-size: clamp(1rem, 2vw, 2rem);
+            }
+        }
+    }
+    .tag {
+        font-family: monospace;
+        background-color: var(--color-accent);
+        color: var(--color-text);
+    }
+}

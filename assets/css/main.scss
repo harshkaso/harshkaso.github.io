@@ -1,4 +1,12 @@
 ---
 ---
 
-@import "base";
+@use "theme";
+@use "open-props-easings";
+@use "base";
+@use "icons";
+@use "home";
+@use "navbar";
+@use "footer";
+// @use "debug.scss"; // Uncomment to debug layout issues
+

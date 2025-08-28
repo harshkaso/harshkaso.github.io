@@ -1,0 +1,71 @@
+//     /* ---------- Core Colors ---------- */
+//   --color-bg: #ffffff;            /* Main background */
+//   --color-bg-alt: #f7f7f7;        /* Alternate background (cards, sections) */
+//   --color-text: #111111;          /* Primary text */
+//   --color-text-muted: #666666;    /* Secondary / muted text */
+
+//   /* ---------- Accent Colors ---------- */
+//   --color-accent: #2563eb;        /* Accent (links, CTA buttons, highlights) */
+//   --color-accent-hover: #1e40af;  /* Accent hover/focus state */
+//   --color-border: #e0e0e0;        /* Borders & dividers */
+//   --color-shadow: rgba(0, 0, 0, 0.1); /* Shadows for depth */
+
+//   /* ---------- Code & Content ---------- */
+//   --color-code-bg: #f5f5f5;       /* Inline code background */
+//   --color-code-text: #d6336c;     /* Inline code text */
+//   --color-pre-bg: #1e1e1e;        /* Code block background */
+//   --color-highlight: #fffbcc;     /* Highlighted text / code line */
+
+//   /* ---------- Semantic Feedback ---------- */
+//   --color-success: #16a34a;       /* Success / positive indicators */
+//   --color-warning: #facc15;       /* Warning / caution */
+//   --color-error: #dc2626;         /* Error / danger */
+//   --color-info: #0284c7;          /* Info / notes */
+
+//   /* ---------- UI Interaction ---------- */
+//   --color-btn-bg: var(--color-accent);              /* Default button background */
+//   --color-btn-text: #ffffff;                      /* Button text */
+//   --color-input-bg: #ffffff;                      /* Form input background */
+//   --color-input-border: var(--color-border);        /* Form input border */
+//   --color-link: var(--color-accent);                /* Link color */
+//   --color-link-hover: var(--color-accent-hover);    /* Link hover color */
+
+
+
+@mixin light-theme {
+    --color-bg:         #ffffff;
+    --color-bg-alt:     #f7f7f7;
+    --color-text:       #111111;
+    --color-text-muted: #666666;
+    --color-accent:     #ff331fff;
+}
+
+@mixin dark-theme {
+    --color-bg:         #030418;
+    --color-bg-alt:     #13152f;
+    --color-text:       #ffffff;
+    --color-text-muted: #666666;
+    --color-accent:     #ff331fff;
+}
+
+:root {
+    color-scheme: light;
+    @include light-theme;
+
+    &[data-theme="dark"] {
+        color-scheme: dark;
+        @include dark-theme;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+        @include dark-theme;
+
+        &[data-theme="light"] {
+            color-scheme: light;
+            @include light-theme;
+        }
+    }
+}

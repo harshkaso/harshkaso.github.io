@@ -1,3 +1,19 @@
-url: "https://your-name.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "harshkaso.github.io" # the subpath of your site, e.g. /blog
+url: "https://harshkaso.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/" # the subpath of your site, e.g. /blog
 title: "" # the name of your site, e.g. ACME Corp.
+description: "Software Developer & Data Analyst with a passion for building innovative solutions in Python, React Native, and data analytics." # a short description of your site
+
+author:
+  name: "Harsh Kasodariya"
+
+
+sass:
+  style: compressed # the style of CSS output, e.g. nested, expanded, compact, compressed
+
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+  posts:
+    output: true # whether to output the collection to a folder
+    permalink: /blog/:slug # the permalink structure for the collection
