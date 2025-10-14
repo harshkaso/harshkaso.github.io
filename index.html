@@ -2,17 +2,24 @@
 layout: home
 title: "Harsh Kasodariya"
 ---
+<section class="hero">
+    <div class="hero-body px-0 py-3">
+        <span class="greet is-inline-desktop has-text-weight-bold">Hi, I'm</span><br/>
+        <!-- <a class="title" href="about"><span class="text-scramble" data-texts='["{{site.author.name}}","Developer", "Data Analyst"]' data-max-frame=100>{{site.author.name}}<span></span></a> -->
+        <a class="title" href="about">
+            <span class="text-scramble has-text-weight-extrabold" data-texts='["{{site.author.name}}","Software Developer", "Data Analyst"]' data-max-frame=100></span>
+        </a>
+        <p class="description">Building data-driven solutions with creativity and code.</p>
+    </div>
+</section>
 
-<div class="container">
-    <section class="hero">
-        <div class="hero-body px-0 py-4">
-            <p class="greet is-skeleton is-inline-desktop">Hi, I'm </p>
-            <a class="title" href="about">{{site.author.name}}</a>
-            <p class="description is-skeleton">{{ site.description }}</p>
-        </div>
-    </section>
-    <span class="tag is-medium mt-6 p-5">
-        {% include icon.html name='briefcase-business' %}
-        <span class="ml-3 text-scramble" data-text="Open to full-time opportunities"></span>
-    </span>
+<span class="tag is-align-self-flex-start is-medium mt-3 ml-3 py-5 px-4">
+    {% include icon.html name='briefcase-business' %}
+    <span class="tag-label ml-3 text-scramble" data-texts='["Open to full-time work"]' data-max-frame=100></span>
+</span>
+
+<div class="is-flex mt-5">
+    {% include link.html href="/resume/#projects" label="Projects" %}
+    {% include link.html class="ml-4" label="Blog" %}
 </div>
+{% include ripple-matrix.html %}

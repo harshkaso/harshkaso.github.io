@@ -1,10 +1,12 @@
 url: "https://harshkaso.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/" # the subpath of your site, e.g. /blog
-title: "" # the name of your site, e.g. ACME Corp.
+title: "ズム丂ㄖ" # the name of your site, e.g. ACME Corp.
 description: "Software Developer & Data Analyst with a passion for building innovative solutions in Python, React Native, and data analytics." # a short description of your site
 
 author:
   name: "Harsh Kasodariya"
+  github: "harshkaso"
+  linkedin: "harshkasodariya"
 
 
 sass:
@@ -17,3 +19,9 @@ collections:
   posts:
     output: true # whether to output the collection to a folder
     permalink: /blog/:slug # the permalink structure for the collection
+  projects:
+    output: true
+    permalink: /projects/:slug
+
+markdown: kramdown
+highlighter: rouge

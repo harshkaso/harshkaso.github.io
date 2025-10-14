@@ -1,0 +1,95 @@
+skills:
+  - name: "Programming Languages"
+    keywords:
+      - Python
+      - C/C++
+      - Java
+  
+  - name: "Framework & Libraries"
+    keywords:
+      - React Native
+      - AngularJS
+      - Jekyll
+
+work:
+  - name: "Talent Surplus Inc."
+    position: "Senior Recruitment Analyst"
+    url: "https://www.talentsurplusinc.com/"
+    startDate: "2023-08"
+    highlights:
+      - "Designed and implemented data pipelines leveraging Google Sheets API & Google Maps API to automate candidate screening, improving suitability by 35%."
+      - "Built dashboards and reporting tools that became the core recruitment analytics system, enabling leadership to track placements and KPIs in real time."
+      - "Analyzed workforce supply-demand trends, reducing time-to-hire by 5 days and increasing placements by 20%."
+      - "Created internal data-sharing infrastructure to streamline processes, saving 10 minutes per worker in registration time."
+  
+  - name: "RoboMQ"
+    position: "Software Development Engineer"
+    url: "https://www.robomq.io/"
+    startDate: "2020-01"
+    endDate: "2022-01"
+    highlights:
+      - "Integrated 10+ APIs into the Connect iPaaS product, enabling automated workflows for 30+ enterprise platforms."
+      - "Collaborated on Java-based microservices handling 100+ daily enterprise workflows, optimizing performance by 25%."
+      - "Led a team to create an internal analytics dashboard for HR engagement metrics, improving retention by 10%."
+
+education:
+  - institution: "Northeastern University"
+    url: "https://toronto.northeastern.edu/"
+    area: "Data Analytics"
+    studyType: "Master of Professional Studies"
+    startDate: "2022-01"
+    endDate: "2023-07"
+    score: "3.8"
+    courses:
+      - "Test"
+  
+  - institution: "Amity University"
+    url: "https://www.amity.edu/jaipur/"
+    area: "Computer Science and Engineering"
+    studyType: "Bachelors of Technology"
+    startDate: "2016-07"
+    endDate: "2020-07"
+    courses:
+      - "Test"
+  
+projects:
+  - name: "Harmony with Heart"
+    startDate: "2024-03"
+    endDate: "2025-02"
+    description: "A cross-platform mobile app for Yogi Divine Society Canada that enables users to discover events, register seamlessly, receive notifications, and access entry with QR codes"
+    highlights:
+      - "Led the front end team and developed a complete UI for the app with over 500 registered users."
+      - "Integrated event data and user registration, managing over 80% of the organization’s events."
+      - "Optimized app performance, reducing load times by 20% through efficient state management."
+    url: "https://apps.apple.com/ca/app/harmony-with-heart/id6517349467"
+  
+  - name: "Flux"
+    startDate: "2024-01"
+    endDate: "2024-03"
+    description: "An interactive Python application that visualizes dynamic flow fields with real-time particle animations, offering customizable functions, color schemes, and particle dynamics through a user-friendly GUI."
+    highlights:
+      - "Developed a relaxation app with customizable generative art, showcasing the GUI library's capabilities beyond its intended use."
+      - "Engineered an interactive UI, allowing real-time adjustments and visualization of 5000 particle dynamics."
+      - "Optimized rendering algorithms, achieving 30 fps with 2500 particles on low-end CPU, enhancing visuals by 25% without GPU."
+    url: "https://github.com/harshkaso/Flux"
+
+certificates: [
+  {
+    name: "Android N Developer",
+    date: "2020-12-16",
+    issuer: "Udemy",
+    url: "https://www.udemy.com/certificate/UC-8b5fbe2b-071b-4abf-922c-154098defddf/"
+  },
+  {
+    name: "Problem Solving (Basic)",
+    date: "2020-09-15",
+    issuer: "HackerRank",
+    url: "https://www.hackerrank.com/certificates/32c04f5d647d"
+  },
+  {
+    name: "Machine Learning",
+    date: "2019-11-05",
+    issuer: "Coursera",
+    url: "https://www.coursera.org/account/accomplishments/verify/YCEAJ4E6PKQN"
+  }
+]

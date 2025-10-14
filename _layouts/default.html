@@ -11,12 +11,12 @@ layout: compress
     <header>
       {% include navbar.html %}
     </header>
-    <content id="content">
+    <hr/>
+    <main id="content" class="container px-4 is-max-desktop">
       {{ content }}
-    </content>
-    <footer class="footer">
-      {% include footer.html %}
-    </footer>
+    </main>
+    <hr/>
+    {% include footer.html %}
     {% include scripts.html %}
   </body>
 </html>

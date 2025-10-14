@@ -1,5 +1,25 @@
-<div class="content has-text-centered mt-5 mb-3">
-    <small>
-        Copyright &copy; {{ 'now' | date: '%Y' }} {{ site.author.name }}. All rights reserved.
+<footer class="footer py-2">
+    <small class="container is-max-desktop has-text-centered mb-2">
+        <nav class="footer-links is-flex is-justify-content-center">
+            {% assign sorted_items = site.pages | sort:"order" %}
+            {% for item in sorted_items %}
+                {% if item.include_in_header == true %}
+                    {% capture href_value %} {{ item.url | relative_url }} {% endcapture %}
+                    {% capture link_label %} {{ item.title }} {% endcapture %}
+                    {% include link.html href=href_value target="_self" label=link_label %}
+                {% endif %}
+            {% endfor %}
+        </nav>
+        <p class="mt-1">
+            Copyright &copy; {{ 'now' | date: '%Y' }} {{ site.author.name }}. All rights reserved.
+        </p>
+        <nav class="footer-socials is-flex is-justify-content-center mt-2">
+            <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener nofollow" title="GitHub Repository">
+                {% include icon.html name="github" %}
+            </a>
+            <a href="https://linkedin.com/in/{{ site.author.linkedin }}" target="_blank" rel="noopener nofollow" title="GitHub Repository">
+                {% include icon.html name="linkedin" %}
+            </a>
+        </nav>
     </small>
-</div>
+</footer>

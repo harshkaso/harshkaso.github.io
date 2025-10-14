@@ -36,16 +36,20 @@
     --color-bg:         #ffffff;
     --color-bg-alt:     #f7f7f7;
     --color-text:       #111111;
-    --color-text-muted: #666666;
+    --color-text-muted: #930000;
+    --color-text-muted: #4b4b4b;
     --color-accent:     #ff331fff;
+    --color-accent:     rgb(0, 0, 0);
 }
 
 @mixin dark-theme {
-    --color-bg:         #030418;
-    --color-bg-alt:     #13152f;
+    --color-bg:         #000000;
+    --color-bg-alt:     #101010;
     --color-text:       #ffffff;
-    --color-text-muted: #666666;
+    --color-text-muted: #ffaaaa;
+    --color-text-muted: #9d9d9d;
     --color-accent:     #ff331fff;
+    --color-accent:     rgb(255, 255, 255);
 }
 
 :root {

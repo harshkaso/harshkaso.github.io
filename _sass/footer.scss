@@ -1,3 +1,9 @@
 .footer {
-    background-color: var(--color-bg);
+    background-color: var(--color-bg) !important;
+    color: var(--color-text-muted) !important;
+
+
+    &-links, &-socials {
+        gap: 1.5em;
+    }
 }

@@ -1,0 +1,7 @@
+@use "base";
+.resume {
+    h5 {
+        @extend %font-display;
+        font-style: normal;
+    }
+}

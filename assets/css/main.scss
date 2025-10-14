@@ -2,11 +2,14 @@
 ---
 
 @use "theme";
+@use "syntax-highlighting";
 @use "open-props-easings";
 @use "base";
 @use "icons";
+@use "links";
 @use "home";
 @use "navbar";
 @use "footer";
+@use "projects";
+@use "resume";
 // @use "debug.scss"; // Uncomment to debug layout issues
-
