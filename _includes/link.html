@@ -1,6 +1,6 @@
 <a href="{{ include.href | default: '#' }}" class="link is-flex is-align-items-center {{ include.class | default: '' }}" target="{{ include.target | default: '_self' }}" data-texts='["{{ include.data_texts }}"]'>
-{% unless include.class contains "text-scramble"  %}
+{%- unless include.class contains "text-scramble"  %}
 {{ include.label | default: 'Link' }}
-{%- endunless -%}
-{%- include icon.html name="arrow-up-right" class="no-scramble"%}
+{% endunless %}
+{%- include icon.html name="arrow-up-right" class="no-scramble" %}
 </a>
