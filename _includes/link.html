@@ -1,6 +1,11 @@
-<a href="{{ include.href | default: '#' }}" class="link is-flex is-align-items-center {{ include.class | default: '' }}" target="{{ include.target | default: '_self' }}" data-texts='["{{ include.data_texts }}"]'>
-{%- unless include.class contains "text-scramble"  %}
+<a href="{{ include.href | default: '#' }}" class="link is-flex is-align-items-center {{ include.class | remove: 'text-scramble' | default: '' }}" target="{{ include.target | default: '_self' }}">
+{%- if include.class contains "text-scramble"  %}
+<span class="text-scramble" data-texts='["{{ include.data_texts }}"]'>
+{%- else %}
 {{ include.label | default: 'Link' }}
-{% endunless %}
+{% endif %}
 {%- include icon.html name="arrow-up-right" class="no-scramble" %}
+{%- if include.class contains "text-scramble"  %}
+</span>
+{%- endif %}
 </a>

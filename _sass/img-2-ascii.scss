@@ -1,0 +1,19 @@
+.img-2-ascii-wrapper {
+    --max-image-height: 450px;
+    position: relative;
+    img {
+        opacity: 0;
+        width: 100%;
+        height: auto;
+        max-height: var(--max-image-height);
+        display: block;
+    }
+    .img-2-ascii {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

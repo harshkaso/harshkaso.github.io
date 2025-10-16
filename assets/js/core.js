@@ -1,11 +1,9 @@
-
 // (() => {
 //   const canvas = document.getElementById('dotMatrix');
 //   const ctx = canvas.getContext('2d', { alpha: true });
 //   const DPR = Math.max(1, window.devicePixelRatio || 1);
-
-//   const style = getComputedStyle(document.documentElement);
-//   const dotColor = style.getPropertyValue('--dot-color').trim() || '#4b4b4b';
+//   const this.style.= getComputedStyle(document.documentElement);
+//   const dotColor = this.style.getPropertyValue('--dot-color').trim() || '#4b4b4b';
 //   const gapDefault = parseFloat(style.getPropertyValue('--gap')) || 36;
 //   const dotRadius = parseFloat(style.getPropertyValue('--dot-size')) || 2.5;
 //   const returnSpeed = parseFloat(style.getPropertyValue('--return-speed')) || 0.08;
@@ -149,7 +147,7 @@
 //   const ctx = canvas.getContext("2d");
 //   const DPR = Math.max(1, window.devicePixelRatio || 1);
 
-//   const style = getComputedStyle(document.documentElement);
+//   const this.style.= getComputedStyle(document.documentElement);
 //   let gap = parseFloat(style.getPropertyValue("--gap")) || 24;
 //   const fontSize = parseFloat(style.getPropertyValue("--font-size")) || 14;
 //   const rippleSpeed = parseFloat(style.getPropertyValue("--ripple-speed")) || 4;
@@ -218,7 +216,7 @@
 //         }
 //       }
 
-//       ctx.fillStyle = style.getPropertyValue("--color-text");
+//       ctx.fillStyle = this.style.getPropertyValue("--color-text");
 //       ctx.fillText(char, p.x, p.y);
 //     }
 
@@ -259,8 +257,8 @@ class RippleMatrix {
     this.canvas = canvas
     this.ctx = this.canvas.getContext("2d")
     this.dpi = window.devicePixelRatio || 1;
-    this.style = getComputedStyle(document.documentElement);
-
+    this.style= getComputedStyle(document.documentElement);
+    
     this.points = []
     this.ripples = []
     this.gap = 15
@@ -270,7 +268,7 @@ class RippleMatrix {
     this.wavelength = this.gap
     this.waveSpeed = 4
     this.waveChars = "⠂⠆⠖⠶⠷⠿oO0@⣿░▒▓██".split('')
-    this.waveChars = "⠂⠆⠖⠶⠷⠿ノハメラマ木@oO0░▒▓██".split('')
+    // this.waveChars = "⠂⠆⠖⠶⠷⠿/ノハメラマ木oO@0░▒▓██".split('')
     this.mouseDown = false
   }
   get width() {
@@ -428,9 +426,7 @@ class ScrambleDecodeText {
     const length = Math.max(oldText.length, newText.length);
     const queue = [];
     const persistentChildren = Array.from(this.el.getElementsByClassName('no-scramble'))
-    console.log('before:', persistentChildren)
     this.el.innerHTML = ''; // clear existing
-    console.log('after:', persistentChildren)
     const span = document.createElement('span');
 
     for (let i = 0; i < length; i++) {
@@ -509,11 +505,117 @@ class ScrambleDecodeText {
 
 class ImageToAscii {
   constructor(img, canvas) {
-    this.img = img
     this.canvas = canvas
-    this.ctx = this.canvas.getContext("2d")
+    this.ctx = this.canvas.getContext("2d");
+
+    this.img = new Image();
+    this.img.src = img
+
     this.dpi = window.devicePixelRatio || 1;
-    this.style = getComputedStyle(document.documentElement);
+    this.asciiChars = './ノハメラマ木'
+    // this.asciiChars = '·-=/Λ口凸田'
+    this.cellSize = 12;
+  }
+
+  get cssWidth() {
+    return this.canvas.getBoundingClientRect().width
+  }
+
+  get cssHeight() {
+    return this.canvas.getBoundingClientRect().height
+  }
+
+  get pixelWidth() {
+    return this.canvas.width
+  }
+
+  get pixelHeight() {
+    return this.canvas.height
+  }
+  
+  setupCanvas = () => {
+    const imageAspectRatio = this.img.width / this.img.height;
+    const maxHeight = parseFloat(getComputedStyle(this.canvas.parentElement).getPropertyValue('--max-image-height')) || 450;
+    const parentRect = this.canvas.parentElement.getBoundingClientRect()
+    const cssWidth = parentRect.width;
+    const cssHeight = Math.min(cssWidth / imageAspectRatio, maxHeight);
+
+    this.canvas.width = cssWidth * this.dpi;
+    this.canvas.height = cssHeight * this.dpi;
+    this.canvas.style.width = cssWidth + 'px';
+    this.canvas.style.height = cssHeight + 'px';
+
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0) // reset transform
+    this.ctx.scale(this.dpi, this.dpi);
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+    this.ctx.font = `bold ${this.cellSize}px monospace`;
+    
+    return Promise.resolve();
+  }
+
+  getPixels = () => {
+    // Draw image to cover canvas
+    const scale = Math.max(this.cssWidth / this.img.width, this.cssHeight / this.img.height);
+    const newWidth = this.img.width * scale;
+    const newHeight = this.img.height * scale;
+    const offsetX = (this.cssWidth - newWidth) / 2;
+    const offsetY = (this.cssHeight - newHeight) / 2;
+    this.ctx.drawImage(this.img, offsetX, offsetY, newWidth, newHeight);
+    // Get pixel data in device pixels
+    return this.ctx.getImageData(0, 0, this.pixelWidth, this.pixelHeight);
+  }
+
+  convert_2_ascii = () => {
+    const pixels = this.getPixels();
+    this.ctx.clearRect(0, 0, this.pixelWidth, this.pixelHeight);
+    this.ctx.fillStyle = '#000';
+    this.ctx.fillRect(0, 0, this.pixelWidth, this.pixelHeight);
+    // Loop in device pixels
+    for (let y = 0; y < pixels.height; y += this.cellSize * this.dpi) {
+      for (let x = 0; x < pixels.width; x += this.cellSize * this.dpi) {
+        let rSum = 0, gSum = 0, bSum = 0, aSum = 0, count = 0;
+
+        for (let dy = 0; dy < this.cellSize * this.dpi; dy++) {
+          for (let dx = 0; dx < this.cellSize * this.dpi; dx++) {
+            const px = x + dx;
+            const py = y + dy;
+            if (px >= pixels.width || py >= pixels.height) continue;
+            const pos = (py * pixels.width + px) * 4;
+            const a = pixels.data[pos + 3];
+            if (a > 64) {
+              rSum += pixels.data[pos];
+              gSum += pixels.data[pos + 1];
+              bSum += pixels.data[pos + 2];
+              aSum += a;
+              count++;
+            }
+          }
+        }
+
+        if (count > 0) {
+          const r = Math.round(rSum / count);
+          const g = Math.round(gSum / count);
+          const b = Math.round(bSum / count);
+          const avgBrightness = (r + g + b) / 3;
+          const charIndex = Math.ceil((avgBrightness / 255) * (this.asciiChars.length - 1));
+          const char = this.asciiChars[charIndex];
+          const gray = (0.299*r) + (0.587*g) + (0.114*b);
+          this.ctx.fillStyle = `rgb(${r},${g},${b})`;
+          this.ctx.fillText(
+            char,
+            (x / this.dpi) + (this.cellSize / 2),
+            (y / this.dpi) + (this.cellSize / 2)
+          );
+        }
+      }
+    }
+  }
+
+  init = () => {
+    const resizeObserver = new ResizeObserver(() => this.setupCanvas().then(() => this.convert_2_ascii()))
+    resizeObserver.observe(this.canvas.parentElement)
+    this.img.onload = () => this.setupCanvas().then(() => this.convert_2_ascii())
   }
 }
 
@@ -529,4 +631,11 @@ window.addEventListener('load', () => {
     const fx = new ScrambleDecodeText(el)
     fx.cycleTexts()
   }
+  elements = document.getElementsByClassName('img-2-ascii')
+  for (el of elements) {
+    const fx = new ImageToAscii(el.dataset.img, el)
+    fx.init()
+  }
+  
+
 })

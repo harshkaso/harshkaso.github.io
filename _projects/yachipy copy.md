@@ -1,6 +1,8 @@
 ---
+layout: project
 title: YaChiPy
-image: /assets/img/yachipy.png
+image: /assets/img/construction.jpg
+show_title: true
 ---
 
 
